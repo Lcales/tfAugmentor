@@ -126,7 +126,7 @@ class RandomRotate(Op):
         if self.info_idx is not None:
             occur = tf.less(tf.random.uniform([], 0, 1), self.probability)
             batch_size = item_flatten[self.info_idx].get_shape()[0] if item_flatten[self.info_idx].get_shape().ndims == 4 else 1
-            angle = tf.random.uniform([batch_size], -30, 30)
+            angle = tf.random.uniform([batch_size], -20, 20)
             item_flatten = [tf.cond(occur, lambda : op(item, angle), lambda : item) for op, item in zip(self.ops, item_flatten)]
         return item_flatten
 
